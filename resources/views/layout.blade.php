@@ -1,7 +1,7 @@
 <title>Laravel tests</title>
 
 <style>
-.form-group {
+x.form-group {
 	padding: 10px;
 	margin: 10px;
 	border: solid 1px #aaa;

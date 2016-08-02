@@ -29,7 +29,7 @@ class HomeController extends Controller {
 	public function getOrganization(Request $request, FormBuilder $forms) {
 		$form = $forms->create(OrganizationForm::class);
 
-		return view('organization', compact('form'));
+		return view('organization.organization', compact('form'));
 	}
 
 	/**
@@ -51,7 +51,7 @@ class HomeController extends Controller {
 	public function getUser(Request $request, FormBuilder $forms) {
 		$form = $forms->create(UserForm::class);
 
-		return view('user', compact('form'));
+		return view('user.user', compact('form'));
 	}
 
 	/**
@@ -73,7 +73,7 @@ class HomeController extends Controller {
 	public function getCreateOrganization(Request $request, FormBuilder $forms) {
 		$form = $forms->create(CreateOrganizationForm::class);
 
-		return view('create-organization', compact('form'));
+		return view('create-organization.create-organization', compact('form'));
 	}
 
 	/**
