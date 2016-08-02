@@ -156,6 +156,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Contrib
+         */
+        App\Providers\AnnotationsServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+
     ],
 
     /*
