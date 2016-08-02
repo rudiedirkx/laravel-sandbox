@@ -16,14 +16,13 @@ class CreateOrganizationForm extends Form {
 
 		$this->add('organization', 'form', [
 			'class' => OrganizationForm::class,
-			'label' => trans('organization.organization'),
-			// 'template' => 'organization.partials.child_form',
+			'label' => 'Organization',
+			'template' => 'organization/child_form',
 		]);
 
 		$this->add('manager', 'form', [
 			'class' => UserForm::class,
-			'label' => trans('organization.manager'),
-			// 'template' => 'professional.partials.child_form',
+			'label' => 'Manager',
 		]);
 	}
 

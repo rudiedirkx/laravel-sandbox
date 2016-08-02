@@ -13,7 +13,7 @@ class OrganizationForm extends Form {
 	public function buildForm() {
 		parent::buildForm();
 
-		// $this->setFormOption('template', 'organization.partials.form');
+		$this->setFormOption('template', 'organization/form');
 
 		$country_region_options = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
 
@@ -24,7 +24,7 @@ class OrganizationForm extends Form {
 
 		$this->add('organization_address', 'form', [
 			'class' => AddressForm::class,
-			'label' => 'ORGANIZATION ADDRESS',
+			'label' => FALSE, // 'ORGANIZATION ADDRESS',
 			'showLabel' => FALSE,
 		]);
 
@@ -49,7 +49,7 @@ class OrganizationForm extends Form {
 
 		$this->add('billing_address', 'form', [
 			'class' => AddressForm::class,
-			'label' => 'BILLING ADDRESS',
+			'label' => FALSE, // 'BILLING ADDRESS',
 			'showLabel' => FALSE,
 		]);
 
@@ -79,16 +79,6 @@ class OrganizationForm extends Form {
 		$this->add('agreements', 'textarea', [
 			'label' => trans('organization.agreements'),
 		]);
-
-		if ($this->getModel()) {
-			$this->add('status', 'choice', [
-				'label' => trans('common.status'),
-				'choices' => array_map('trans', $this->getModel()->getAvailableStatuses()),
-				'expanded' => TRUE,
-				'default_value' => 'pending',
-				'rules' => ['required'],
-			]);
-		}
 
 		$this->add('logo', 'file', [
 			'label' => $this->getModel() ? trans('organization.upload_new_logo') : trans('organization.logo'),

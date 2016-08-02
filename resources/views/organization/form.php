@@ -4,11 +4,7 @@
 <?php endif; ?>
 
 <?php if ($showFields): ?>
-	<?php foreach ($fields as $field): ?>
-		<?php if( $field->getName() != 'submit' && !in_array($field->getName(), $exclude) ) { ?>
-			<?= $field->render() ?>
-		<?php } ?>
-	<?php endforeach; ?>
+	<?php include 'fields.php'; ?>
 <?php endif; ?>
 
 <?php if ($showEnd): ?>

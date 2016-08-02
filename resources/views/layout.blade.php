@@ -1,11 +1,13 @@
 <title>Laravel tests</title>
 
 <style>
-x.form-group {
-	padding: 10px;
-	margin: 10px;
-	border: solid 1px #aaa;
-	background-color: rgba(0, 0, 0, 0.07);
+fieldset {
+	padding: 5px 10px;
+	margin: 10px 0;
+}
+.form-group {
+	padding: 5px;
+	margin: 5px;
 }
 </style>
 
