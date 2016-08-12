@@ -11,7 +11,7 @@
 	</fieldset>
 
 	<div class="form-actions">
-		<?= form_row($form->getField('submit')) ?>
+		<?= form_rows($form, ['submit', 'submit2']) ?>
 	</div>
 
 	<?= Form::close() ?>

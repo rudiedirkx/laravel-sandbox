@@ -9,12 +9,21 @@ fieldset {
 	padding: 5px;
 	margin: 5px;
 }
+.form-group + .form-group {
+	border-top: solid 1px #aaa;
+}
+.text-danger,
+.has-error {
+	color: red;
+}
 </style>
 
 <p>
-    <a href="/organization">Organization</a> |
-    <a href="/user">User</a> |
-    <a href="/create-organization">Create organization</a>
+	  <a href="/">Home</a>
+	| <a href="/organization">Organization</a>
+	| <a href="/user">User</a>
+	| <a href="/create-organization">Create organization</a>
+	| <a href="/nested">Nested</a>
 </p>
 
 @yield('content')

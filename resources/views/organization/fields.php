@@ -1,7 +1,7 @@
 <fieldset>
 	<legend>Organization details</legend>
 
-	<?= form_rows($form, ['name', 'organization_address', 'website', 'client_since', 'client_until']) ?>
+	<?= form_rows($form, ['name', 'subscription', 'organization_address', 'website', 'client_since', 'client_until']) ?>
 </fieldset>
 
 <fieldset>

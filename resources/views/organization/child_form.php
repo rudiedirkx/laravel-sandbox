@@ -9,7 +9,7 @@
 <?php endif; ?>
 
 <?php if ($showField): ?>
-	<?php $form = $options['form']; include 'fields.php'; ?>
+	<?php $form = $child_form; include 'fields.php'; ?>
 <?php endif; ?>
 
 <?php if ($showLabel && $showField): ?>

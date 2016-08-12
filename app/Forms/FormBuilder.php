@@ -15,7 +15,8 @@ class FormBuilder extends \Kris\LaravelFormBuilder\FormBuilder {
 
 		if (empty($options['name'])) {
 			$form->setFormOption('novalidate', '');
-			$form->add('submit', 'submit');
+			$form->add('submit', 'submit', ['value' => 'submit1']);
+			$form->add('submit2', 'submit', ['value' => 'submit2']);
 		}
 
 		return $form;

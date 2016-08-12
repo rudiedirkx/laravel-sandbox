@@ -5,7 +5,7 @@
 
 <?php if ($showFields): ?>
 	<?php foreach ($fields as $field): ?>
-		<?php if( $field->getName() != 'submit' && !in_array($field->getName(), $exclude) ) { ?>
+		<?php if ( !in_array($field->getName(), array_merge($exclude, ['submit', 'submit2'])) ) { ?>
 			<?= $field->render() ?>
 		<?php } ?>
 	<?php endforeach; ?>
@@ -15,7 +15,7 @@
 	</fieldset>
 
 	<div class="form-actions">
-		<?= form_row($form->getField('submit')) ?>
+		<?= form_rows($form, ['submit', 'submit2']) ?>
 	</div>
 
 	<?= Form::close() ?>
