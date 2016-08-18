@@ -13,7 +13,7 @@ class OrganizationForm extends Form {
 	public function buildForm() {
 		parent::buildForm();
 
-		$this->setFormOption('template', 'organization/form');
+		$this->setFormOption('fields_template', 'organization/fields');
 
 		$country_region_options = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
 

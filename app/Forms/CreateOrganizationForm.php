@@ -17,7 +17,6 @@ class CreateOrganizationForm extends Form {
 		$this->add('organization', 'form', [
 			'class' => OrganizationForm::class,
 			'label' => 'Organization',
-			'template' => 'organization/child_form',
 		]);
 
 		$this->add('manager', 'form', [
