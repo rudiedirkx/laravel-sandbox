@@ -61,8 +61,8 @@ class OrganizationForm extends Form {
 		$this->add('billing_email', 'email', [
 			'rules' => ['email'],
 		]);
-		$this->add('billing_phone', 'tel', [
-			'rules' => ['required', 'tel'],
+		$this->add('billing_phone', 'text', [
+			'rules' => ['required'],
 		]);
 
 		$this->add('maximum_accounts', 'number', [
@@ -81,8 +81,33 @@ class OrganizationForm extends Form {
 
 		$this->add('logo', 'file', [
 			'attr' => ['accept' => 'image/*'],
-			'rules' => ['image', 'min_width:200', 'min_height:200', 'max:2000'],
+			'rules' => ['image', 'max:5000'],
 		]);
+	}
+
+	/**
+	 *
+	 */
+	public function alterValid(Form $mainForm, &$isValid)
+	{
+		$messages = [];
+
+		// if ($isValid) {
+		// 	$isValid = false;
+
+		// 	$messages['name'][] = 'STINKT!';
+		// 	return $messages;
+		// }
+
+		if (!$isValid) {
+			$values = $this->getFieldValues(false);
+			if (!empty($values['logo'])) {
+				$label = $this->getField('logo')->getOption('label');
+				$messages['logo'] = "Must re-upload '$label', because validation errors.";
+			}
+		}
+
+		return $messages;
 	}
 
 }

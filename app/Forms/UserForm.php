@@ -27,9 +27,7 @@ class UserForm extends Form {
 		$this->add('lastname', 'text', [
 			'rules' => ['required'],
 		]);
-		$this->add('phone', 'tel', [
-			'rules' => ['tel'],
-		]);
+		$this->add('phone', 'text');
 		$this->add('country_region_id', 'choice', [
 			'choices' => ['' => '-- Select region --'] + $country_region_options,
 			'rules' => ['required'],
@@ -51,8 +49,26 @@ class UserForm extends Form {
 
 		$this->add('picture', 'file', [
 			'attr' => ['accept' => 'image/*'],
-			'rules' => ['image', 'min_width:200', 'min_height:200', 'max:2000'],
+			'rules' => ['image', 'max:2000'],
 		]);
+	}
+
+	/**
+	 *
+	 */
+	public function alterValid(Form $mainForm, &$isValid)
+	{
+		$messages = [];
+
+		if (!$isValid) {
+			$values = $this->getFieldValues(false);
+			if (!empty($values['picture'])) {
+				$label = $this->getField('picture')->getOption('label');
+				$messages['picture'] = "Must re-upload '$label', because validation errors.";
+			}
+		}
+
+		return $messages;
 	}
 
 }

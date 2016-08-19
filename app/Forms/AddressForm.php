@@ -12,6 +12,8 @@ class AddressForm extends Form {
 	public function buildForm() {
 		$countries = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
 
+		$types = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
+
 		$this->add('street', 'text', [
 			'rules' => ['required', 'min:2'],
 		]);
@@ -30,6 +32,31 @@ class AddressForm extends Form {
 			'default_value' => 'a',
 			'rules' => ['required'],
 		]);
+		$this->add('types', 'choice', [
+			'choices' => $types,
+			'expanded' => true,
+			'multiple' => true,
+		]);
+	}
+
+	/**
+	 *
+	 */
+	public function alterFieldValues(array &$values) {
+		$values['types'] = (array) @$values['types'];
+	}
+
+	/**
+	 *
+	 */
+	public function alterValid(Form $mainForm, &$isValid)
+	{
+		$values = $this->getFieldValues(false);
+
+		if (strlen($values['street']) != 6) {
+			$messages['street'][] = 'MUST BE EXACTLY 6 CHARS LONG!';
+			return $messages;
+		}
 	}
 
 }
