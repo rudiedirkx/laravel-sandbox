@@ -24,6 +24,7 @@ fieldset {
 	| <a href="/user">User</a>
 	| <a href="/create-organization">Create organization</a>
 	| <a href="/nested">Nested</a>
+	| <a href="/school">School</a>
 </p>
 
 @if (count($errors) > 0)

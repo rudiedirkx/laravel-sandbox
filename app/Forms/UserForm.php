@@ -19,6 +19,7 @@ class UserForm extends Form {
 		$this->add('email', 'email', [
 			'rules' => ['required', 'email'],
 		]);
+		$this->add('password', 'repeated');
 		$this->add('firstname', 'text', [
 			'rules' => ['required'],
 		]);
