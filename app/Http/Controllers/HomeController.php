@@ -7,9 +7,12 @@ use App\Forms\FormBuilder;
 use App\Forms\NesterForm;
 use App\Forms\OrganizationForm;
 use App\Forms\SchoolForm;
+use App\Forms\TranslationsForm;
 use App\Forms\UserForm;
 use App\Http\Controllers\Controller;
 use App\School;
+use App\Translation;
+use Illuminate\Database\Eloquent\Collection as ModelCollection;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Form;
 
@@ -23,6 +26,45 @@ class HomeController extends Controller {
 	 */
 	public function getIndex(Request $request) {
 		return view('index', []);
+	}
+
+
+
+	/**
+	 * @Get("/translate", as="translate")
+	 */
+	public function getTranslate(Request $request, FormBuilder $forms) {
+		$translations = $this->translations();
+
+		$form = $forms->create(TranslationsForm::class, [], [
+			'collection' => $translations,
+		]);
+
+		return view('translate.translate', compact('form'));
+	}
+
+	/**
+	 * @Post("/translate", as="translate.post")
+	 */
+	public function postTranslate(Request $request, FormBuilder $forms) {
+		$translations = $this->translations();
+
+		$form = $forms->create(TranslationsForm::class);
+
+		$form->redirectIfNotValid();
+
+		$this->handleSubmit($request, $form);
+	}
+
+	/**
+	 *
+	 */
+	protected function translations() {
+		return new ModelCollection([
+			new Translation(['from' => 'Nederlands', 'to' => 'Dutch']),
+			new Translation(['from' => 'Engels', 'to' => 'English']),
+			new Translation(['from' => 'Ja', 'to' => 'Yes']),
+		]);
 	}
 
 
