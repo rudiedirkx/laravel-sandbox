@@ -2,7 +2,9 @@
 
 namespace App\Forms;
 
-class FormBuilder extends \Kris\LaravelFormBuilder\FormBuilder {
+use Kris\LaravelFormBuilder\FormBuilder as BaseFormBuilder;
+
+class FormBuilder extends BaseFormBuilder {
 
 	/**
 	 * Override Kris\LaravelFormBuilder\FormBuilder::create().

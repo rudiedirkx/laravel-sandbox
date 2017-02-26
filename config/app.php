@@ -148,6 +148,12 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        /**
+         * Contrib
+         */
+        App\Providers\AnnotationsServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -155,12 +161,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /**
-         * Contrib
-         */
-        App\Providers\AnnotationsServiceProvider::class,
-        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
     ],
 

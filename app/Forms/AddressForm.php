@@ -37,6 +37,9 @@ class AddressForm extends Form {
 			'expanded' => true,
 			'multiple' => true,
 		]);
+		$this->add('private', 'checkbox', [
+			'label' => 'Private address',
+		]);
 	}
 
 	/**

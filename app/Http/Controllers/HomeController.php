@@ -47,8 +47,6 @@ class HomeController extends Controller {
 	 * @Post("/translate", as="translate.post")
 	 */
 	public function postTranslate(Request $request, FormBuilder $forms) {
-		$translations = $this->translations();
-
 		$form = $forms->create(TranslationsForm::class);
 
 		$form->redirectIfNotValid();
@@ -150,6 +148,9 @@ class HomeController extends Controller {
 	public function postCreateOrganization(Request $request, FormBuilder $forms) {
 		$form = $forms->create(CreateOrganizationForm::class);
 
+dpm($form->getFieldValues(), 'values');
+exit;
+
 		$form->redirectIfNotValid();
 
 		$this->handleSubmit($request, $form);
@@ -177,8 +178,6 @@ class HomeController extends Controller {
 	 * @Post("/school", as="school.post")
 	 */
 	public function postSchool(Request $request, FormBuilder $forms) {
-		$school = $this->school();
-
 		$form = $forms->create(SchoolForm::class);
 
 		$form->redirectIfNotValid();

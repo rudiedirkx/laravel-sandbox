@@ -14,21 +14,21 @@ class TranslationsForm extends Form {
 		parent::buildForm();
 
 		// Works
-		$this->add('translations1', 'collection', [
-			'type' => 'form',
-			'data' => $this->data['collection'],
-			'options' => [
-				'class' => TranslationForm::class,
-				'label' => 'Translation',
-			],
-		]);
+		// $this->add('translations1', 'collection', [
+		// 	'type' => 'form',
+		// 	'data' => $this->data['collection'],
+		// 	'options' => [
+		// 		'class' => TranslationForm::class,
+		// 		'label' => 'Translation',
+		// 	],
+		// ]);
 
 		// Works
-		$this->add('translations2', 'collection', [
-			'type' => 'text',
-			'property' => 'to',
-			'data' => $this->data['collection'],
-		]);
+		// $this->add('translations2', 'collection', [
+		// 	'type' => 'text',
+		// 	'property' => 'to',
+		// 	'data' => $this->data['collection'],
+		// ]);
 
 		// Doesn't work: every collection child renders collection[0]
 		$this->add('translations3', 'collection', [
@@ -41,6 +41,17 @@ class TranslationsForm extends Form {
 				'label' => 'Translation',
 			],
 		]);
+
+		// Works
+		// $formObject = $this->formBuilder->create(TranslationForm::class);
+		// $this->add('translations4', 'collection', [
+		// 	'type' => 'form',
+		// 	'data' => $this->data['collection'],
+		// 	'options' => [
+		// 		'class' => $formObject,
+		// 		'label' => 'Translation',
+		// 	],
+		// ]);
 	}
 
 }
