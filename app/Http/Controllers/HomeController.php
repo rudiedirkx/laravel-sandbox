@@ -9,11 +9,11 @@ use App\Forms\OrganizationForm;
 use App\Forms\SchoolForm;
 use App\Forms\TranslationsForm;
 use App\Forms\UserForm;
-use App\Http\Controllers\Controller;
 use App\School;
 use App\Translation;
 use Illuminate\Database\Eloquent\Collection as ModelCollection;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Kris\LaravelFormBuilder\Form;
 
 /**

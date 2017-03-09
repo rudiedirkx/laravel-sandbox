@@ -2,6 +2,7 @@
 
 namespace App\Forms;
 
+use Illuminate\Support\HtmlString;
 use Kris\LaravelFormBuilder\Form;
 
 class AddressForm extends Form {
@@ -10,9 +11,11 @@ class AddressForm extends Form {
 	 * Build the form.
 	 */
 	public function buildForm() {
-		$countries = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
-
-		$types = ['a' => 'Aaa', 'b' => 'Bbb', 'c' => 'Ccc'];
+		$countries = [
+			'a' => 'Aaa',
+			'b' => 'Bbb',
+			'c' => 'Ccc',
+		];
 
 		$this->add('street', 'text', [
 			'rules' => ['required', 'min:2'],
@@ -33,12 +36,17 @@ class AddressForm extends Form {
 			'rules' => ['required'],
 		]);
 		$this->add('types', 'choice', [
-			'choices' => $types,
+			'label' => new HtmlString('Types <em>(36)</em>'),
+			'choices' => [
+				'a' => new HtmlString('Aaa <em>(12)</em>'),
+				'b' => new HtmlString('Bbb <em>(12)</em>'),
+				'c' => new HtmlString('Ccc <em>(12)</em>'),
+			],
 			'expanded' => true,
 			'multiple' => true,
 		]);
 		$this->add('private', 'checkbox', [
-			'label' => 'Private address',
+			'label' => new HtmlString('Private address <em>(bla)</em>'),
 		]);
 	}
 
