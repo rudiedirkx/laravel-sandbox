@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b44e0858f878a0bf8713e4631cb38a6",
-    "content-hash": "78549b087190ceb578418d6b45e1b26d",
+    "hash": "6c7416071746fb43c0f8dfd0e406b90f",
+    "content-hash": "37295104af19db6ece70986dcdeb09ef",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2646,6 +2646,39 @@
             "time": "2015-10-02 06:51:40"
         },
         {
+            "name": "rdx/laravel-migrate-down",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rudiedirkx/laravel-migrate-down.git",
+                "reference": "db6523ef7c9a31a91df4c561f717d3da67516b3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rudiedirkx/laravel-migrate-down/zipball/db6523ef7c9a31a91df4c561f717d3da67516b3e",
+                "reference": "db6523ef7c9a31a91df4c561f717d3da67516b3e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "rdx\\migratedown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudie Dirkx",
+                    "email": "github@hotblocks.nl"
+                }
+            ],
+            "description": "Adds a migrate:down command with more control than migrate:rollback.",
+            "time": "2017-03-30 18:09:28"
+        },
+        {
             "name": "sebastian/comparator",
             "version": "1.2.4",
             "source": {
@@ -3181,7 +3214,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rdx/laravel-migrate-down": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
