@@ -154,6 +154,8 @@ return [
         App\Providers\AnnotationsServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
+        rdx\filemanager\FileManagerServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

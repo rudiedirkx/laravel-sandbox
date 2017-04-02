@@ -16,7 +16,8 @@
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
-        "rdx/laravel-migrate-down": "dev-master"
+        "rdx/laravel-migrate-down": "dev-master",
+        "rdx/laravel-file-manager": "dev-master"
     },
     "autoload": {
         "classmap": [

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6c7416071746fb43c0f8dfd0e406b90f",
-    "content-hash": "37295104af19db6ece70986dcdeb09ef",
+    "hash": "4e571fe57c71c20aac6483621ba6cef6",
+    "content-hash": "f1953108d87608c7b4f29741cac1384a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2646,6 +2646,39 @@
             "time": "2015-10-02 06:51:40"
         },
         {
+            "name": "rdx/laravel-file-manager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rudiedirkx/laravel-file-manager.git",
+                "reference": "88d9081406091ede2cffb68f3649e2a64284c304"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rudiedirkx/laravel-file-manager/zipball/88d9081406091ede2cffb68f3649e2a64284c304",
+                "reference": "88d9081406091ede2cffb68f3649e2a64284c304",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "rdx\\filemanager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudie Dirkx",
+                    "email": "github@hotblocks.nl"
+                }
+            ],
+            "description": "File manager API (no UI) for Laravel",
+            "time": "2017-04-02 12:52:20"
+        },
+        {
             "name": "rdx/laravel-migrate-down",
             "version": "dev-master",
             "source": {
@@ -3215,7 +3248,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "rdx/laravel-migrate-down": 20
+        "rdx/laravel-migrate-down": 20,
+        "rdx/laravel-file-manager": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
