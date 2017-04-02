@@ -8,10 +8,10 @@ use App\Forms\FilesForm;
 use App\Forms\FormBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use rdx\filemanager\FileId;
+use rdx\filemanager\FileUsage;
 use rdx\filemanager\FileManager;
 use rdx\filemanager\ManagedFile;
-use rdx\filemanager\ModelFileId;
+use rdx\filemanager\ModelFileUsage;
 
 /**
  * @Controller(prefix="files")
@@ -62,7 +62,7 @@ class FilesController extends Controller {
 
 		// Save usages
 		foreach ($usage as $field => $file) {
-			$file->addUsage(new ModelFileId($address, $field));
+			$file->addUsage(new ModelFileUsage($address, $field));
 		}
 
 		return redirect()->route('files.addresses');
@@ -91,7 +91,7 @@ class FilesController extends Controller {
 		foreach (['picture', 'terms'] as $field) {
 			if (isset($values[$field])) {
 				$managed = $files->saveFile($values[$field], 'address');
-				$managed->replaceUsage(new ModelFileId($address, $field));
+				$managed->replaceUsage(new ModelFileUsage($address, $field));
 				$values[$field] = $managed->id;
 			}
 		}
