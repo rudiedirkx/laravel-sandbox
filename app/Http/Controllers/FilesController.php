@@ -52,7 +52,6 @@ class FilesController extends Controller {
 		foreach (['picture', 'terms'] as $field) {
 			if (isset($values[$field])) {
 				$managed = $files->saveFile($values[$field], 'ad/dr/es/ss');
-				$files->publish('original', $managed);
 				$usage[$field] = $managed;
 				$values[$field] = $managed->id;
 			}
