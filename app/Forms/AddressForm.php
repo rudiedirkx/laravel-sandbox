@@ -24,8 +24,10 @@ class AddressForm extends Form {
 			'rules' => ['required'],
 		]);
 		$this->add('street_nr_additional', 'text', [
+
 		]);
 		$this->add('postal_code', 'text', [
+
 		]);
 		$this->add('city', 'text', [
 			'rules' => ['required', 'min:2'],
@@ -45,6 +47,22 @@ class AddressForm extends Form {
 			'expanded' => true,
 			'multiple' => true,
 		]);
+		if ($this->model && $this->model->picture_path) {
+			$this->add('current_picture', 'static', [
+				'value' => '<img width="100" src="' . $this->model->picture_path . '" />',
+			]);
+		}
+		$this->add('picture', 'file', [
+
+		]);
+		if ($this->model && $this->model->terms_file) {
+			$this->add('current_terms', 'static', [
+				'value' => $this->model->terms->fullpath,
+			]);
+		}
+		$this->add('terms', 'file', [
+
+		]);
 		$this->add('private', 'checkbox', [
 			'label' => new HtmlString('Private address <em>(bla)</em>'),
 		]);
@@ -54,19 +72,14 @@ class AddressForm extends Form {
 	 *
 	 */
 	public function alterFieldValues(array &$values) {
-		$values['types'] = (array) @$values['types'];
-	}
+		$values['types'] = implode(',', (array) @$values['types']);
 
-	/**
-	 *
-	 */
-	public function alterValid(Form $mainForm, &$isValid)
-	{
-		$values = $this->getFieldValues(false);
+		$values['private'] = !empty($values['private']);
 
-		if (strlen($values['street']) != 6) {
-			$messages['street'][] = 'MUST BE EXACTLY 6 CHARS LONG!';
-			return $messages;
+		foreach (['picture', 'terms'] as $field) {
+			if ($values[$field] === null) {
+				unset($values[$field]);
+			}
 		}
 	}
 

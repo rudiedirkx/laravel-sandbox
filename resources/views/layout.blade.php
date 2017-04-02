@@ -26,6 +26,7 @@ fieldset {
 	| <a href="/nested">Nested</a>
 	| <a href="/school">School</a>
 	| <a href="/translate">Translate</a>
+	| <a href="/files/addresses">Addresses</a>
 </p>
 
 @if (count($errors) > 0)

@@ -153,6 +153,8 @@ return [
          */
         App\Providers\AnnotationsServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        rdx\filemanager\FileManagerServiceProvider::class,
 
         rdx\filemanager\FileManagerServiceProvider::class,
 

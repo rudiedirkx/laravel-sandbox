@@ -6,6 +6,8 @@ use App\Forms\BaseForm;
 use App\Forms\FormBuilder;
 use Illuminate\Support\ServiceProvider;
 use Kris\LaravelFormBuilder\FormHelper;
+use rdx\filemanager\FileManager;
+use rdx\filemanager\ManagedFile;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -28,6 +30,24 @@ class AppServiceProvider extends ServiceProvider {
 		$this->app->extend(FormBuilder::class, function($forms, $app) {
 			$forms->setFormClass(BaseForm::class);
 			return $forms;
+		});
+
+		$this->app->resolving(FileManager::class, function(FileManager $manager) {
+			$manager->addPublisher('small', function(FileManager $manager, ManagedFile $file) {
+				// Prep dir
+				$target = $file->publicPath('small');
+				$manager->prepPublicDir(dirname($target));
+
+				// Convert file
+				$img = \Intervention\Image\Facades\Image::make($file->fullpath);
+				$img->crop(100, 100);
+
+				// Write file
+				$img->save($target);
+
+				// Chmod file
+				$manager->chmodFile($target);
+			});
 		});
 	}
 
