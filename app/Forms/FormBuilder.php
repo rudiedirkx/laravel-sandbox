@@ -18,7 +18,7 @@ class FormBuilder extends BaseFormBuilder {
 		if (empty($options['name'])) {
 			$form->setFormOption('novalidate', '');
 			$form->add('submit', 'submit', ['value' => 'submit1']);
-			$form->add('submit2', 'submit', ['value' => 'submit2']);
+			// $form->add('submit2', 'submit', ['value' => 'submit2']);
 		}
 
 		return $form;

@@ -38,4 +38,41 @@ class Address extends Model {
 		}
 	}
 
+	/**
+	 * Convert 'types' to array
+	 */
+	public function fill(array $attributes) {
+		$return = parent::fill($attributes);
+
+		if (is_string($this->types)) {
+			$this->types = array_filter(explode(',', $this->types));
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Convert 'types' to array
+	 */
+	public function setRawAttributes(array $attributes, $sync = false) {
+		$return = parent::setRawAttributes($attributes, $sync);
+
+		if (is_string($this->types)) {
+			$this->types = array_filter(explode(',', $this->types));
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Convert 'types' to string
+	 */
+	public function save(array $options = []) {
+		if (is_array($this->types)) {
+			$this->types = implode(',', array_filter($this->types));
+		}
+
+		return parent::save($options);
+	}
+
 }

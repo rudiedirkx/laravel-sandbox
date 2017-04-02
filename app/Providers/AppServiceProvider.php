@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider {
 
 				// Convert file
 				$img = \Intervention\Image\Facades\Image::make($file->fullpath);
-				$img->crop(100, 100);
+				$img->fit(100, 100);
 
 				// Write file
 				$img->save($target);

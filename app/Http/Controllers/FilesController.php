@@ -51,7 +51,7 @@ class FilesController extends Controller {
 		$usage = [];
 		foreach (['picture', 'terms'] as $field) {
 			if (isset($values[$field])) {
-				$managed = $files->saveFile($values[$field], 'ad/dr/es/ss');
+				$managed = $files->saveFile($values[$field], 'address');
 				$usage[$field] = $managed;
 				$values[$field] = $managed->id;
 			}
@@ -81,53 +81,31 @@ class FilesController extends Controller {
 	/**
 	 * @Post("/addresses/{id}/edit", as="files.addresses.edit.post")
 	 */
-	public function postEditAddress(FormBuilder $forms, $id) {
+	public function postEditAddress(FormBuilder $forms, FileManager $files, $id) {
 		$address = Address::findOrFail($id);
 		$form = $forms->create(AddressForm::class, ['model' => $address]);
 		$form->redirectIfNotValid();
 
 		$values = $form->getFieldValues();
-dpm($values, 'values');
+
+		foreach (['picture', 'terms'] as $field) {
+			if (isset($values[$field])) {
+				$managed = $files->saveFile($values[$field], 'address');
+				$managed->replaceUsage(new ModelFileId($address, $field));
+				$values[$field] = $managed->id;
+			}
+		}
+
+		$address->update($values);
+		$files->cleanUsage();
+
+		return redirect()->back();
 	}
 
 
 
 	/**
-	 * @Get("/{managed_file}", as="files.show")
-	 */
-	public function getShowFile(Request $request, FormBuilder $forms, ManagedFile $file) {
-dpm($file, 'file');
-	}
-
-	/**
-	 * @Get("/create", as="files.create")
-	 */
-	public function getCreate(Request $request, FormBuilder $forms) {
-		$form = $forms->create(FilesForm::class);
-
-		return view('files/form', compact('form'));
-	}
-
-	/**
-	 * @Post("/create", as="files.create.post")
-	 */
-	public function postCreate(Request $request, FormBuilder $forms, FileManager $files) {
-		$form = $forms->create(FilesForm::class);
-		$form->redirectIfNotValid();
-
-// dpm($files, 'files');
-
-		$values = $form->getFieldValues();
-		$uploaded = $values['file1'];
-// dpm($uploaded, 'file');
-
-		$managed = $files->saveFile($uploaded)->addUsage(new FileId('files', 'create'));
-dpm($managed, 'managed');
-dpm($managed->fullpath, 'managed->fullpath');
-	}
-
-	/**
-	 * @Get("/{publisher}/{managed_file_path}", priority=-20, as="files.publish")
+	 * @Get("/{publisher}/{managed_file_path}", as="files.publish")
 	 */
 	public function getPublishFile(Request $request, FileManager $files, $publisher, $path) {
 		$file = $files->findByPathOrFail($path);
