@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Collection as ModelCollection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Kris\LaravelFormBuilder\Form;
+use rdx\filemanager\FileManager;
 
 /**
  * @Middleware("web")
@@ -207,6 +208,18 @@ exit;
 		print_r($form->getAllAttributes());
 		print_r($form->getFieldValues());
 		var_dump($form->isValid());
+	}
+
+
+
+	/**
+	 * @Get("/_files/{publisher}/{managed_file_path}", as="files.publish")
+	 */
+	public function getPublishFile(Request $request, FileManager $files, $publisher, $path) {
+		$file = $files->findByPathOrFail($path);
+		$files->publish($publisher, $file);
+
+		return redirect()->to($request->path());
 	}
 
 }

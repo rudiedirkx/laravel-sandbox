@@ -5,7 +5,6 @@
 
 	<p>
 		{{ link_to_route('files.addresses.create', 'Create address') }}
-		{{ link_to_route('files.create', 'Upload file') }}
 	</p>
 
 	<table border="1" cellspacing="0" cellpadding="7">

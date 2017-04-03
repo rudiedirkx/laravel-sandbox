@@ -20,6 +20,17 @@ use rdx\filemanager\ModelFileUsage;
 class FilesController extends Controller {
 
 	/**
+	 * @Get("/", as="files")
+	 */
+	public function getFiles(Request $request, FileManager $files) {
+		$files = $files->findAll();
+
+		return view('files/list', compact('files'));
+	}
+
+
+
+	/**
 	 * @Get("/addresses", as="files.addresses")
 	 */
 	public function getAddresses() {
@@ -100,18 +111,6 @@ class FilesController extends Controller {
 		$files->cleanUsage();
 
 		return redirect()->back();
-	}
-
-
-
-	/**
-	 * @Get("/{publisher}/{managed_file_path}", as="files.publish")
-	 */
-	public function getPublishFile(Request $request, FileManager $files, $publisher, $path) {
-		$file = $files->findByPathOrFail($path);
-		$files->publish($publisher, $file);
-
-		return redirect()->to($request->path());
 	}
 
 }
