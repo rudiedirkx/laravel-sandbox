@@ -9,6 +9,7 @@
 				<th>ID</th>
 				<th>Path</th>
 				<th>Small</th>
+				<th>Usage</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +22,7 @@
 							<img width="40" src="{{ $file->webPath('small') }}" />
 						</a>
 					</td>
+					<td>{{ $file->getUsageCount() }}</td>
 				</tr>
 			@endforeach
 		</tbody>
