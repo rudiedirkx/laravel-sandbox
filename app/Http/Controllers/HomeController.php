@@ -210,16 +210,4 @@ exit;
 		var_dump($form->isValid());
 	}
 
-
-
-	/**
-	 * @Get("/_files/{publisher}/{managed_file_path}", as="files.publish")
-	 */
-	public function getPublishFile(Request $request, FileManager $files, $publisher, $path) {
-		$file = $files->findByPathOrFail($path);
-		$files->publish($publisher, $file);
-
-		return redirect()->to($request->path());
-	}
-
 }
