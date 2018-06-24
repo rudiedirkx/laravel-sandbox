@@ -10,6 +10,7 @@
 				<th>Path</th>
 				<th>Small</th>
 				<th>Usage</th>
+				<th>Created</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,7 @@
 						</a>
 					</td>
 					<td>{{ $file->getUsageCount() }}</td>
+					<td>{{ $file->created_at }}</td>
 				</tr>
 			@endforeach
 		</tbody>
