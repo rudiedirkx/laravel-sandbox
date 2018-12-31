@@ -166,7 +166,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         rdx\migratedown\MigrateDownServiceProvider::class,
-
+        App\RudieView\RudieViewServiceProvider::class,
     ],
 
     /*

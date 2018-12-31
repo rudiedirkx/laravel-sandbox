@@ -1,0 +1,13 @@
+<p>Boele:</p>
+
+<p>:content</p>
+
+<ul>
+:for list as x
+	<li>:x</li>
+:endfor
+</ul>
+
+<hr>
+
+<pre>:code|e</pre>
