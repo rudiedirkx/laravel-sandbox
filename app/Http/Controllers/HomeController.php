@@ -26,7 +26,7 @@ class HomeController extends Controller {
 	 * @Get("/", as="home")
 	 */
 	public function getIndex(Request $request) {
-		return view('index', [
+		return view('layout', [
 			'content' => 'Woop woop ' . rand(),
 			'list' => ['A', 'Bb', 'Ccc'],
 		]);
@@ -39,9 +39,11 @@ class HomeController extends Controller {
 	 */
 	public function getTranslate(Request $request, FormBuilder $forms) {
 		$translations = $this->translations();
-
-		$form = $forms->create(TranslationsForm::class, [], [
-			'collection' => $translations,
+		$model = (new School())->forceFill(['translations1' => $translations]);
+		$form = $forms->create(TranslationsForm::class, [
+			'model' => $model,
+		], [
+			// 'collection' => $translations,
 		]);
 
 		return view('translate.translate', compact('form'));
@@ -51,7 +53,13 @@ class HomeController extends Controller {
 	 * @Post("/translate", as="translate.post")
 	 */
 	public function postTranslate(Request $request, FormBuilder $forms) {
-		$form = $forms->create(TranslationsForm::class);
+		$translations = $this->translations();
+		$model = (new School())->forceFill(['translations1' => $translations]);
+		$form = $forms->create(TranslationsForm::class, [
+			// 'model' => $model,
+		], [
+			// 'collection' => $translations,
+		]);
 
 		$form->redirectIfNotValid();
 
@@ -65,7 +73,18 @@ class HomeController extends Controller {
 		return new ModelCollection([
 			new Translation(['from' => 'Nederlands', 'to' => 'Dutch']),
 			new Translation(['from' => 'Engels', 'to' => 'English']),
-			new Translation(['from' => 'Ja', 'to' => 'Yes']),
+			// new Translation(['from' => 'Ja', 'to' => 'Yes']),
+			// new Translation(['from' => 'Nee', 'to' => 'No']),
+			// new Translation(['from' => 'Gisteren', 'to' => 'Yesterday']),
+			// new Translation(['from' => 'Vandaag', 'to' => 'Today']),
+			// new Translation(['from' => 'Morgen', 'to' => 'Tomorrow']),
+			// new Translation(['from' => 'Maandag', 'to' => 'Monday']),
+			// new Translation(['from' => 'Dinsdag', 'to' => 'Tuesday']),
+			// new Translation(['from' => 'Woensdag', 'to' => 'Wednesday']),
+			// new Translation(['from' => 'Donderdag', 'to' => 'Thursday']),
+			// new Translation(['from' => 'Vrijdag', 'to' => 'Friday']),
+			// new Translation(['from' => 'Zaterdag', 'to' => 'Saturday']),
+			// new Translation(['from' => 'Zondag', 'to' => 'Sunday']),
 		]);
 	}
 

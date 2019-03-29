@@ -16,9 +16,11 @@ class FormBuilder extends BaseFormBuilder {
 		$form = parent::create($formClass, $options, $data);
 
 		if (empty($options['name'])) {
-			$form->setFormOption('novalidate', '');
-			$form->add('submit', 'submit', ['value' => 'submit1']);
-			// $form->add('submit2', 'submit', ['value' => 'submit2']);
+			// $form->setFormOption('novalidate', '');
+			$form->add('submit', 'submit', [
+				'label' => 'Su<em><strong>ubmi</strong></em>it',
+				'attr' => ['value' => 'submit1'],
+			]);
 		}
 
 		return $form;

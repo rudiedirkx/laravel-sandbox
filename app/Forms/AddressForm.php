@@ -18,6 +18,7 @@ class AddressForm extends Form {
 		];
 
 		$this->add('street', 'text', [
+			'label' => new HtmlString('The <em>Street</em> name'),
 			'rules' => ['required', 'min:2'],
 		]);
 		$this->add('street_nr', 'text', [

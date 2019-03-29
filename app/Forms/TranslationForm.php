@@ -2,6 +2,7 @@
 
 namespace App\Forms;
 
+use Kris\LaravelFormBuilder\Filters\FilterInterface;
 use Kris\LaravelFormBuilder\Form;
 
 class TranslationForm extends Form {
@@ -12,8 +13,7 @@ class TranslationForm extends Form {
 	public function buildForm() {
 		parent::buildForm();
 
-		// No model =(
-		// dpm($this, 'this');
+// dpm($this->model, 'TranslationForm model');
 
 		$this->add('from', 'text', [
 			'label' => 'From',
@@ -21,6 +21,14 @@ class TranslationForm extends Form {
 
 		$this->add('to', 'text', [
 			'label' => 'To',
+			'filters' => [new class implements FilterInterface {
+				public function getName() {
+					return 'upper';
+				}
+				public function filter($value, $options = []) {
+					return strtoupper($value);
+				}
+			}],
 		]);
 	}
 
