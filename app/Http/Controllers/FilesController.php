@@ -84,7 +84,7 @@ class FilesController extends Controller {
 	 */
 	public function getEditAddress(FormBuilder $forms, $id) {
 		$address = Address::findOrFail($id);
-		$form = $forms->create(AddressForm::class, ['model' => $address]);
+		$form = $this->makeAddressForm($forms, $address);
 
 		return view('files/addresses/form', compact('address', 'form'));
 	}
@@ -94,10 +94,11 @@ class FilesController extends Controller {
 	 */
 	public function postEditAddress(FormBuilder $forms, FileManager $files, $id) {
 		$address = Address::findOrFail($id);
-		$form = $forms->create(AddressForm::class, ['model' => $address]);
+		$form = $this->makeAddressForm($forms, $address);
 		$form->redirectIfNotValid();
 
 		$values = $form->getFieldValues();
+dd($values);
 
 		foreach (['picture', 'terms'] as $field) {
 			if (isset($values[$field])) {
@@ -111,6 +112,13 @@ class FilesController extends Controller {
 		$files->cleanUsage();
 
 		return redirect()->back();
+	}
+
+	protected function makeAddressForm(FormBuilder $forms, Address $address = null) {
+		return $forms->create(AddressForm::class, [
+			'model' => ['address' => $address],
+			'name' => 'address',
+		]);
 	}
 
 }

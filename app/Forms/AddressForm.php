@@ -11,6 +11,8 @@ class AddressForm extends Form {
 	 * Build the form.
 	 */
 	public function buildForm() {
+		$model = $this->name ? $this->model[$this->name] : $this->model;
+
 		$countries = [
 			'a' => 'Aaa',
 			'b' => 'Bbb',
@@ -48,17 +50,17 @@ class AddressForm extends Form {
 			'expanded' => true,
 			'multiple' => true,
 		]);
-		if ($this->model && $this->model->picture_path) {
+		if ($model && $model->picture_path) {
 			$this->add('current_picture', 'static', [
-				'value' => '<img width="100" src="' . $this->model->picture_path . '" />',
+				'value' => new HtmlString('<img width="100" src="' . $model->picture_path . '" />'),
 			]);
 		}
 		$this->add('picture', 'file', [
 
 		]);
-		if ($this->model && $this->model->terms_file) {
+		if ($model && $model->terms_file) {
 			$this->add('current_terms', 'static', [
-				'value' => $this->model->terms->fullpath,
+				'value' => $model->terms->fullpath,
 			]);
 		}
 		$this->add('terms', 'file', [
@@ -67,6 +69,13 @@ class AddressForm extends Form {
 		$this->add('private', 'checkbox', [
 			'label' => new HtmlString('Private address <em>(bla)</em>'),
 		]);
+
+		if ($this->name) {
+			$this->add('submit', 'submit', [
+				'label' => 'Su<em><strong>ubmi</strong></em>it',
+				'attr' => ['value' => 'submit1'],
+			]);
+		}
 	}
 
 	/**
