@@ -98,10 +98,9 @@ class FilesController extends Controller {
 		$form->redirectIfNotValid();
 
 		$values = $form->getFieldValues();
-dd($values);
 
 		foreach (['picture', 'terms'] as $field) {
-			if (isset($values[$field])) {
+			if (!empty($values[$field])) {
 				$managed = $files->saveFile($values[$field], 'address');
 				$managed->replaceUsage(new ModelFileUsage($address, $field));
 				$values[$field] = $managed->id;

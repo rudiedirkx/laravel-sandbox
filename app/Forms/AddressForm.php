@@ -11,7 +11,7 @@ class AddressForm extends Form {
 	 * Build the form.
 	 */
 	public function buildForm() {
-		$model = $this->name ? $this->model[$this->name] : $this->model;
+		$model = $this->name ? $this->model[$this->name] ?? null : $this->model;
 
 		$countries = [
 			'a' => 'Aaa',
@@ -53,6 +53,8 @@ class AddressForm extends Form {
 		if ($model && $model->picture_path) {
 			$this->add('current_picture', 'static', [
 				'value' => new HtmlString('<img width="100" src="' . $model->picture_path . '" />'),
+				// 'tag' => 'img',
+				// 'attr' => ['src' => $model->picture_path],
 			]);
 		}
 		$this->add('picture', 'file', [

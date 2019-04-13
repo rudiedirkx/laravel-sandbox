@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Forms\CreateOrganizationForm;
 use App\Forms\FormBuilder;
+use App\Forms\InvoiceForm;
 use App\Forms\NesterForm;
 use App\Forms\OrganizationForm;
 use App\Forms\SchoolForm;
 use App\Forms\TranslationsForm;
 use App\Forms\UserForm;
+use App\Invoice;
+use App\InvoiceItem;
 use App\School;
 use App\Translation;
 use Illuminate\Database\Eloquent\Collection as ModelCollection;
@@ -30,6 +33,27 @@ class HomeController extends Controller {
 			'content' => 'Woop woop ' . rand(),
 			'list' => ['A', 'Bb', 'Ccc'],
 		]);
+	}
+
+
+
+	/**
+	 * @Get("/invoice", as="invoice")
+	 */
+	public function getInvoices(Request $request, FormBuilder $forms) {
+		$invoice = new Invoice([
+			'id' => 12,
+			'title' => 'March 2019',
+			'items' => collect([
+				// new InvoiceItem(['id' => 4, 'title' => 'Work']),
+				// new InvoiceItem(['id' => 5, 'title' => 'Lazying']),
+			]),
+		]);
+		$form = $forms->create(InvoiceForm::class, [
+			'model' => $invoice,
+		]);
+
+		return view('invoice.invoice', compact('form'));
 	}
 
 
