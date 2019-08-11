@@ -28,7 +28,7 @@ fieldset {
 	| <a href="/translate">Translate</a>
 	| <a href="/invoice">Invoice</a>
 
-	| <a href="/files/addresses">Addresses</a>
+	| <a href="/addresses">Addresses</a>
 	| <a href="/files">Files</a>
 
 	| <a href="/queries/join">JOIN</a>

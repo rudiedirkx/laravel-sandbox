@@ -4,7 +4,7 @@
 	<h1>Addresses</h1>
 
 	<p>
-		{{ link_to_route('files.addresses.create', 'Create address') }}
+		{{ link_to_route('addresses.create', 'Create address') }}
 	</p>
 
 	<table border="1" cellspacing="0" cellpadding="7">
@@ -21,7 +21,7 @@
 					<td>{{ $address->id }}</td>
 					<td>{{ $address->street }} {{ $address->street_nr }} {{ $address->street_nr_additional }}</td>
 					<td>{{ $address->city }}</td>
-					<td>{{ link_to_route('files.addresses.edit', 'edit', [$address]) }}</td>
+					<td>{{ link_to_route('addresses.edit', 'edit', [$address]) }}</td>
 				</tr>
 			@endforeach
 		</tbody>
