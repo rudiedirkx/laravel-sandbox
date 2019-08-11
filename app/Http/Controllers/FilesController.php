@@ -44,6 +44,7 @@ class FilesController extends Controller {
 	 */
 	public function getCreateAddress(FormBuilder $forms) {
 		$form = $forms->create(AddressForm::class);
+		$form->disableFields();
 		$address = null;
 
 		return view('files/addresses/form', compact('address', 'form'));

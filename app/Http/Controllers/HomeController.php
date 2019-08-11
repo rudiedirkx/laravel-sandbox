@@ -45,8 +45,8 @@ class HomeController extends Controller {
 			'id' => 12,
 			'title' => 'March 2019',
 			'items' => collect([
-				// new InvoiceItem(['id' => 4, 'title' => 'Work']),
-				// new InvoiceItem(['id' => 5, 'title' => 'Lazying']),
+				new InvoiceItem(['id' => 4, 'title' => 'Work']),
+				new InvoiceItem(['id' => 5, 'title' => 'Lazying']),
 			]),
 		]);
 		$form = $forms->create(InvoiceForm::class, [

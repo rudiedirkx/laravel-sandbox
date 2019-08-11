@@ -23,6 +23,13 @@ class Address extends Model {
 	];
 
 	/**
+	 * Getter for 'address'.
+	 */
+	public function getAddressAttribute() {
+		return trim("$this->street $this->street_nr $this->street_nr_additional");
+	}
+
+	/**
 	 * Getter for 'picture_file'.
 	 */
 	public function getPictureFileAttribute() {

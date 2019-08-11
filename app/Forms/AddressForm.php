@@ -3,9 +3,12 @@
 namespace App\Forms;
 
 use Illuminate\Support\HtmlString;
+use Kris\LaravelFormBuilder\Fields\ChoiceType;
 use Kris\LaravelFormBuilder\Form;
 
 class AddressForm extends Form {
+
+	protected $clientValidationEnabled = false;
 
 	/**
 	 * Build the form.
@@ -48,8 +51,20 @@ class AddressForm extends Form {
 				'c' => new HtmlString('Ccc <em>(12)</em>'),
 			],
 			'expanded' => true,
-			'multiple' => true,
+			'multiple' => false,
+			'rules' => ['required'],
 		]);
+		// $this->addField(new ChoiceType('reservation', 'choice', $this, [
+		// 	'label' => new HtmlString('Types <em>(36)</em>'),
+		// 	'choices' => [
+		// 		'a' => new HtmlString('Aaa <em>(12)</em>'),
+		// 		'b' => new HtmlString('Bbb <em>(12)</em>'),
+		// 		'c' => new HtmlString('Ccc <em>(12)</em>'),
+		// 	],
+		// 	'expanded' => true,
+		// 	'multiple' => false,
+		// 	'rules' => ['required'],
+		// ]));
 		if ($model && $model->picture_path) {
 			$this->add('current_picture', 'static', [
 				'value' => new HtmlString('<img width="100" src="' . $model->picture_path . '" />'),
