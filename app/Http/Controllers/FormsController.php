@@ -155,7 +155,12 @@ class FormsController extends Controller {
 	 */
 	public function getTranslate(Request $request, FormBuilder $forms) {
 		$translations = $this->translations();
-		$model = (new School())->forceFill(['translations1' => $translations]);
+		$model = (new School())->forceFill([
+			'translations1' => $translations,
+			'translations2' => $translations,
+			'translations3' => $translations,
+			'translations4' => $translations,
+		]);
 		$form = $forms->create(TranslationsForm::class, [
 			'model' => $model,
 		], [
@@ -187,16 +192,16 @@ class FormsController extends Controller {
 	 */
 	protected function translations() {
 		return new ModelCollection([
-			new Translation(['from' => 'Nederlands', 'to' => 'Dutch']),
-			new Translation(['from' => 'Engels', 'to' => 'English']),
+			// new Translation(['from' => 'Nederlands', 'to' => 'Dutch']),
+			// new Translation(['from' => 'Engels', 'to' => 'English']),
 			// new Translation(['from' => 'Ja', 'to' => 'Yes']),
 			// new Translation(['from' => 'Nee', 'to' => 'No']),
 			// new Translation(['from' => 'Gisteren', 'to' => 'Yesterday']),
 			// new Translation(['from' => 'Vandaag', 'to' => 'Today']),
 			// new Translation(['from' => 'Morgen', 'to' => 'Tomorrow']),
-			// new Translation(['from' => 'Maandag', 'to' => 'Monday']),
-			// new Translation(['from' => 'Dinsdag', 'to' => 'Tuesday']),
-			// new Translation(['from' => 'Woensdag', 'to' => 'Wednesday']),
+			new Translation(['from' => 'Maandag', 'to' => 'Monday']),
+			new Translation(['from' => 'Dinsdag', 'to' => 'Tuesday']),
+			new Translation(['from' => 'Woensdag', 'to' => 'Wednesday']),
 			// new Translation(['from' => 'Donderdag', 'to' => 'Thursday']),
 			// new Translation(['from' => 'Vrijdag', 'to' => 'Friday']),
 			// new Translation(['from' => 'Zaterdag', 'to' => 'Saturday']),

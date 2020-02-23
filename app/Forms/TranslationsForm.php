@@ -14,7 +14,7 @@ class TranslationsForm extends Form {
 	public function buildForm() {
 		parent::buildForm();
 
-// dpm($this->model, 'TranslationsForm model');
+// dump($this->model);
 
 		$collection = $this->data['collection'] ?? $this->model->translations1 ?? [];
 
@@ -50,6 +50,7 @@ class TranslationsForm extends Form {
 			'label' => 'Vertalingen (1)',
 			'type' => 'form',
 			// 'data' => $collection,
+			'prototype' => false,
 			'prefer_input' => true,
 			// 'empty_row' => false,
 			'options' => [
@@ -70,7 +71,8 @@ class TranslationsForm extends Form {
 		// $this->add('translations3', 'collection', [
 		// 	'label' => 'Vertalingen (3)',
 		// 	'type' => 'form',
-		// 	'data' => $collection,
+		// 	// 'data' => $collection,
+		// 	'prototype' => false,
 		// 	'options' => [
 		// 		'class' => $this->formBuilder->plain()
 		// 			->add('from', 'text', ['label' => 'From'])
@@ -84,7 +86,8 @@ class TranslationsForm extends Form {
 		// $this->add('translations4', 'collection', [
 		// 	'label' => 'Vertalingen (4)',
 		// 	'type' => 'form',
-		// 	'data' => $collection,
+		// 	// 'data' => $collection,
+		// 	'prototype' => false,
 		// 	'options' => [
 		// 		'class' => $formObject,
 		// 		'label' => 'Translation',
