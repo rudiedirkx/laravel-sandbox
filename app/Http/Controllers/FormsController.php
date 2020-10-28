@@ -14,6 +14,7 @@ use App\Forms\TranslationsForm;
 use App\Forms\UserForm;
 use App\Invoice;
 use App\InvoiceItem;
+use App\InvoiceItemRelatedPerson;
 use App\School;
 use App\Translation;
 use Illuminate\Database\Eloquent\Collection as ModelCollection;
@@ -133,19 +134,23 @@ class FormsController extends Controller {
 	 * @Get("/invoice", as="invoice")
 	 */
 	public function getInvoices(Request $request, FormBuilder $forms) {
-		$invoice = new Invoice([
-			'id' => 12,
-			'title' => 'March 2019',
-			'items' => collect([
-				new InvoiceItem(['id' => 4, 'title' => 'Work']),
-				new InvoiceItem(['id' => 5, 'title' => 'Lazying']),
-			]),
-		]);
 		$form = $forms->create(InvoiceForm::class, [
-			'model' => $invoice,
+			'model' => $this->invoice(),
 		]);
 
 		return view('invoice.invoice', compact('form'));
+	}
+
+	/**
+	 * @Post("/invoice", as="invoice.post")
+	 */
+	public function postInvoices(Request $request, FormBuilder $forms) {
+		$form = $forms->create(InvoiceForm::class, [
+			'model' => $this->invoice(),
+		]);
+		// $form->redirectIfNotValid();
+
+		$this->handleSubmit($request, $form);
 	}
 
 
@@ -329,6 +334,8 @@ exit;
 		$this->handleSubmit($request, $form);
 	}
 
+
+
 	/**
 	 *
 	 */
@@ -340,6 +347,25 @@ exit;
 		return $school;
 	}
 
+	/**
+	 *
+	 */
+	protected function invoice() {
+		return new Invoice([
+			'id' => 12,
+			'title' => 'March 2019',
+			'items' => collect([
+				new InvoiceItem(['id' => 4, 'title' => 'Work']),
+				new InvoiceItem(['id' => 5, 'title' => 'Lazying']),
+				new InvoiceItem(['id' => 6, 'title' => 'Spying', 'related_people' => collect([
+					new InvoiceItemRelatedPerson(['id' => 32, 'name' => 'Neigbor']),
+					new InvoiceItemRelatedPerson(['id' => 33, 'name' => 'Sister']),
+					new InvoiceItemRelatedPerson(['id' => 45, 'name' => 'Teacher']),
+				])]),
+			]),
+		]);
+	}
+
 
 
 	/**
@@ -347,8 +373,11 @@ exit;
 	 */
 	protected function handleSubmit(Request $request, Form $form) {
 		echo '<pre>';
+		echo 'request: ';
 		print_r($request->all());
+		echo 'attributes: ';
 		print_r($form->getAllAttributes());
+		echo 'values: ';
 		print_r($form->getFieldValues());
 		var_dump($form->isValid());
 	}

@@ -9,5 +9,10 @@ return [
 
     'invoice_item' => [
         'title' => 'Work description',
+        'related_people' => 'Related people',
+    ],
+
+    'invoice_item_related_person' => [
+        'name' => 'Person/relation',
     ],
 ];
