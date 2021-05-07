@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Forms\AddressForm;
+use App\Forms\ChoicesForm;
 use App\Forms\CreateOrganizationForm;
 use App\Forms\FormBuilder;
 use App\Forms\InvoiceForm;
@@ -22,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Kris\LaravelFormBuilder\Form;
 use rdx\filemanager\FileManager;
+use rdx\filemanager\ModelFileUsage;
 
 /**
  * @Middleware("web")
@@ -40,6 +42,28 @@ class FormsController extends Controller {
 
 
 	/**
+	 * @Get("/choices/create", as="choices.create")
+	 */
+	public function getCreateChoices(FormBuilder $forms) {
+		$form = $forms->create(ChoicesForm::class);
+
+		return view('forms/simple', compact('form'));
+	}
+
+	/**
+	 * @Post("/choices/create", as="choices.create.post")
+	 */
+	public function postCreateChoices(FormBuilder $forms) {
+		$form = $forms->create(ChoicesForm::class);
+		$form->redirectIfNotValid();
+
+		$values = $form->getFieldValues();
+		dd($values);
+	}
+
+
+
+	/**
 	 * @Get("/addresses", as="addresses")
 	 */
 	public function getAddresses() {
@@ -53,7 +77,7 @@ class FormsController extends Controller {
 	 */
 	public function getCreateAddress(FormBuilder $forms) {
 		$form = $forms->create(AddressForm::class);
-		$form->disableFields();
+		// $form->disableFields();
 		$address = null;
 
 		return view('addresses/form', compact('address', 'form'));
@@ -86,7 +110,7 @@ class FormsController extends Controller {
 			$file->addUsage(new ModelFileUsage($address, $field));
 		}
 
-		return redirect()->route('files.addresses');
+		return redirect()->route('addresses');
 	}
 
 	/**

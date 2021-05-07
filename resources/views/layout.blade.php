@@ -12,6 +12,11 @@ fieldset {
 .form-group + .form-group {
 	border-top: solid 1px #aaa;
 }
+.control-label.required:after {
+	content: " *";
+	color: red;
+	font-weight: bold;
+}
 .text-danger,
 .has-error {
 	color: red;

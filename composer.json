@@ -1,23 +1,14 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "rdx/laravel",
+    "description": "Laravel playground.",
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "^5.4",
-        "kris/laravel-form-builder": "^1.7",
-        "laravelcollective/annotations": "^5.2",
-        "intervention/image": "^2.3"
-    },
-    "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*",
-        "rdx/laravel-migrate-down": "dev-master",
+        "php": ">=7.4",
+        "intervention/image": "^2.3",
+        "kris/laravel-form-builder": "dev-master",
+        "laravel/framework": "^8.0",
+        "laravelcollective/annotations": "^8.0",
         "rdx/laravel-file-manager": "dev-master"
     },
     "autoload": {
@@ -29,9 +20,6 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ],
         "files": [
           "bootstrap/dev.php"
         ]

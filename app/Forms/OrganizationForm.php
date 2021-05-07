@@ -7,6 +7,8 @@ use Kris\LaravelFormBuilder\Form;
 
 class OrganizationForm extends Form {
 
+	protected $clientValidationEnabled = false;
+
 	/**
 	 * Build the form.
 	 */
@@ -19,6 +21,12 @@ class OrganizationForm extends Form {
 
 		$this->add('name', 'text', [
 			'rules' => ['required', 'min:2'],
+		]);
+
+		$this->add('super', 'checkbox', [
+		]);
+
+		$this->add('duper', 'checkbox', [
 		]);
 
 		$this->add('subscription', 'choice', [

@@ -151,11 +151,10 @@ return [
         /**
          * Contrib
          */
+        App\Providers\RouteServiceProvider::class,
         App\Providers\AnnotationsServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        rdx\filemanager\FileManagerServiceProvider::class,
-
         rdx\filemanager\FileManagerServiceProvider::class,
 
         /*
@@ -164,8 +163,6 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        rdx\migratedown\MigrateDownServiceProvider::class,
         App\RudieView\RudieViewServiceProvider::class,
     ],
 

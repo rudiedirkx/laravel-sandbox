@@ -24,19 +24,17 @@ class AddressForm extends Form {
 
 		$this->add('street', 'text', [
 			'label' => new HtmlString('The <em>Street</em> name'),
-			'rules' => ['required', 'min:2'],
-		]);
-		$this->add('street_nr', 'text', [
 			'rules' => ['required'],
 		]);
-		$this->add('street_nr_additional', 'text', [
-
+		$this->add('street_nr', 'text', [
+			'rules' => [],
 		]);
+		// $this->add('street_nr_additional', 'text', [
+		// ]);
 		$this->add('postal_code', 'text', [
-
 		]);
 		$this->add('city', 'text', [
-			'rules' => ['required', 'min:2'],
+			'rules' => [],
 		]);
 		$this->add('country', 'choice', [
 			'choices' => ['' => '-- Select country --'] + $countries,
@@ -52,6 +50,7 @@ class AddressForm extends Form {
 			],
 			'expanded' => true,
 			'multiple' => false,
+			// 'copy_options_to_children' => false,
 			'rules' => ['required'],
 		]);
 		// $this->addField(new ChoiceType('reservation', 'choice', $this, [
@@ -85,6 +84,7 @@ class AddressForm extends Form {
 		]);
 		$this->add('private', 'checkbox', [
 			'label' => new HtmlString('Private address <em>(bla)</em>'),
+			// 'value' => 'private',
 		]);
 
 		if ($this->name) {
@@ -99,9 +99,9 @@ class AddressForm extends Form {
 	 *
 	 */
 	public function alterFieldValues(array &$values) {
-		$values['types'] = implode(',', (array) @$values['types']);
+		// $values['types'] = implode(',', (array) @$values['types']);
 
-		$values['private'] = !empty($values['private']);
+		// $values['private'] = !empty($values['private']);
 
 		foreach (['picture', 'terms'] as $field) {
 			if ($values[$field] === null) {
